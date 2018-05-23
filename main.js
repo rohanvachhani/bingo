@@ -164,7 +164,7 @@ $(document).ready(function() {
         gameID = "",
         global_room_id = "";
     name = "";
-    var socket = io.connect('http://localhost:5001');
+    var socket = io.connect('https://bingo-rohan.herokuapp.com');
 
     //emit the create requset to the server when user click on create room button    
     $('#create').on('click', function() {

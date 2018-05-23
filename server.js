@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT;
 var server = app.listen(port || 5001, function() {
-    console.log('listening to website https://rohanv5.000webhostapp.com/');
+    console.log('listening to website https://bingo-rohan.herokuapp.com/');
 });
 var io = require('socket.io')(server);
 
