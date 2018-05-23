@@ -1,0 +1,17 @@
+{
+  "name": "bingo_rohan",
+  "version": "1.0.0",
+  "description": "A realtime online multiplayer bingo game.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Rohan Vachhani",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "jquery": "^3.1.1",
+    "skeleton-css": "^2.0.4",
+    "socket.io": "^1.7.1"
+  }
+}
