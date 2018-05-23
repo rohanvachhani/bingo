@@ -161,7 +161,8 @@ $(document).ready(function() {
 
     var cr_name = "",
         jn_name = "",
-        gameID = "";
+        gameID = "",
+        global_room_id = "";
     name = "";
     var socket = io.connect('http://localhost:5001');
 
@@ -202,7 +203,8 @@ $(document).ready(function() {
             turn.innerHTML = message;
         }
         // Create game for player 1
-        //game = new game(data.room);
+        game = new game(data.room);
+        global_room_id = data.room;
 
     });
 
@@ -225,6 +227,9 @@ $(document).ready(function() {
 
             socket.emit('joinGame', { name: jn_name, room: gameID });
             player = new player(name);
+            //game = new game(gameID);
+            global_room_id = gameID;
+
             game_joined = 1;
 
         } else {
@@ -258,6 +263,12 @@ $(document).ready(function() {
     socket.on('err', function(data) {
         room.innerHTML = "Sorry Room Is Full";
         $("#create").prop("disabled", false); //user can now create the game
+    });
+
+    socket.on('gameEnd', function(data) {
+        turn.innerHTML = data.msg;
+        $('#turn').show();
+        socket.leave(global_room_id);
     });
 
 
@@ -309,10 +320,7 @@ $(document).ready(function() {
         }
     });
 
-    socket.on('gameEnd', function(data) {
-        turn.innerHTML = data.msg;
-        $('#turn').show();
-    });
+
 
 
     socket.on('msg_rcvd', function(data) {
@@ -487,7 +495,7 @@ $(document).ready(function() {
             console.log("diagonal-2 made: " + ary[4] + "," + ary[8] + "," + ary[12] + "," + ary[16] + "," + ary[20]);
             console.log('count = ' + arry_of_done_count);
         }
-    }//end of check_win functioon
+    } //end of check_win functioon
 
 
 });

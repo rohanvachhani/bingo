@@ -1,8 +1,9 @@
 //works as server
 var express = require('express');
 var app = express();
-var server = app.listen(5001, function() {
-    console.log('listening to port 5001');
+var port = process.env.PORT;
+var server = app.listen(port || 5001, function() {
+    console.log('listening to website https://rohanv5.000webhostapp.com/');
 });
 var io = require('socket.io')(server);
 
@@ -13,7 +14,7 @@ var roomID;
 
 app.use(express.static('.'));
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/game.html');
+    res.sendFile(__dirname + '/index.html');
 });
 
 io.on('connection', function(socket) {
