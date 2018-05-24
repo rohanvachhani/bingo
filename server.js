@@ -43,8 +43,8 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('gameEnded', function(data) {
-        socket.broadcast.to(data.room).emit('gameEnd', data);
+    socket.on('gameEnd', function(data) {
+        socket.broadcast.to(roomID).emit('gameEnd', data);
 
     });
 

@@ -165,6 +165,7 @@ $(document).ready(function() {
         global_room_id = "";
     name = "";
     var socket = io.connect('https://bingo-rohan.herokuapp.com');
+    //var socket = io.connect('http://localhost:5001');
 
     //emit the create requset to the server when user click on create room button    
     $('#create').on('click', function() {
@@ -266,9 +267,11 @@ $(document).ready(function() {
     });
 
     socket.on('gameEnd', function(data) {
-        turn.innerHTML = data.msg;
-        $('#turn').show();
-        socket.leave(global_room_id);
+        // turn.innerHTML = data.msg;
+        // $('#turn').show();
+        // socket.leave(global_room_id);
+        alert(data.msg);
+         location.reload();
     });
 
 
@@ -289,24 +292,27 @@ $(document).ready(function() {
                     $(this).css('color', 'black');
                     //check win 
                     if (check_win()) {
-                        var msg = ":: " + player.getPlayerName() + " is WINNER.!";
-                        console.log(msg);
-                        turn.innerHTML = msg;
+                        var msg_to_send = ":: " + player.getPlayerName() + " is WINNER.!";
+                        socket.emit('gameEnd', { msg: msg_to_send });
+
+                        console.log(msg_to_send);
+                        turn.innerHTML = msg_to_send;
                         $('#turn').show();
-                        socket.emit('gameEnd', {
-                            msg: msg
-                        });
-                        alert(msg);
+
+                        alert(msg_to_send);
+
                         location.reload();
+                    } else {
+                        //if not win
+                        socket.emit('move_played', {
+                            player_name: player.name,
+                            move: move
+                        });
+                        player.setCurrentTurn(false);
+                        turn.innerHTML = 'opponent\'s turn ';
+                        $('#turn').show();
                     }
-                    //if not win
-                    socket.emit('move_played', {
-                        player_name: player.name,
-                        move: move
-                    });
-                    player.setCurrentTurn(false);
-                    turn.innerHTML = 'opponent\'s turn ';
-                    $('#turn').show();
+
                 }
             } else {
                 turn.innerHTML = 'not your TURN.!';
@@ -337,15 +343,19 @@ $(document).ready(function() {
                             //change the color of cuurent move element
                             $(this).css('color', 'black');
                             if (check_win()) {
-                                var msg = ":: " + player.getPlayerName() + " is WINNER.!";
-                                console.log(msg);
-                                turn.innerHTML = msg;
-                                $('#turn').show();
-                                socket.emit('gameEnd', {
-                                    msg: msg
-                                });
-                                alert(msg);
+                                var msg_to_send = ":: " + player.getPlayerName() + " is WINNER.!";
+                                console.log(msg_to_send);
+                                socket.emit('gameEnd', { msg: msg_to_send });
+
+                                //turn.innerHTML = msg;
+                                //$('#turn').show();
+
+                                alert(msg_to_send);
                                 location.reload();
+                            } else {
+                                player.setCurrentTurn(true);
+                                turn.innerHTML = 'your turn';
+                                $('#turn').show();
                             }
                         }
                     });
@@ -356,14 +366,6 @@ $(document).ready(function() {
             }
         }
 
-        //check win 
-
-        //if not win
-        // player.setCurrentTurn(false);
-
-        player.setCurrentTurn(true);
-        turn.innerHTML = 'your turn';
-        $('#turn').show();
     });
 
     function is_marked(move) {
