@@ -1,5 +1,5 @@
 body {
-    font-family: 'open Sans';
+    font-family: 'Laila', serif;;
     color: white;
     background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
     background-repeat: no-repeat;
@@ -34,17 +34,21 @@ body {
 
 
 #gametitle {
-    font-family: 'Open Sans';
-    font-weight: 300;
+    /*font-family: 'Laila', serif;*/
+    font-weight: 700;
     text-align: center;
     margin-bottom: 10px;
     margin-top: 50px;
     color: white;
 }
+#subtitle{
+   /* font-family: 'Laila', serif;*/
+    font-weight: 300;
+}
 
 h3,
 h2 {
-    font-family: 'Open Sans';
+    /*font-family: 'Laila', serif;*/
     font-weight: 300;
     text-align: center;
     color: white;
@@ -60,7 +64,7 @@ h2 {
 
 table {
     font-family: 'open Sans';
-    font-weight: 300;
+    font-weight: 900;
     text-align: center;
 }
 
@@ -80,7 +84,7 @@ td {
 #set,
 #create,
 #join {
-    font-weight: 500;
+    font-weight: 400;
     width: 160px;
     padding: 10px;
     margin-left: 30px;
