@@ -1,9 +1,17 @@
 //works as server
-var express = require('express');
+var express = require('parse/node');
 var app = express();
 var port = process.env.PORT;
+const APP_ID = "Xm9bC5ikwQiCdekPSzUuUHghmKAT9nbULtlsXVPA"
+const JAVASCRIPT_KEY = "5xME9Wk7FYEOnX6tDYFYfeo2z2s1DKnc3bEC0FKd"
+
+console.log("Initializing Application", APP_ID);
+
+express.initialize(APP_ID, JAVASCRIPT_KEY);
+express.serverURL("https://parseapi.back4app.com/");
+
 var server = app.listen(port || 5001, function() {
-    console.log('listening to website https://bingo-rohan.herokuapp.com/');
+    console.log('listening to website https://parseapi.back4app.com/');
 });
 var io = require('socket.io')(server);
 
