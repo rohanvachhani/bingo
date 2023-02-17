@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+bashCopy code
+>>>>>>> 11324092339a911f3a370b4e24f02f6c54e46844
 # Use the official Node.js image as the base image
 FROM node:12
 
