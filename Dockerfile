@@ -15,7 +15,7 @@ RUN npm install
 # Bundle app source
 COPY . /app
 
-EXPOSE 4040
+EXPOSE 5001
 
 # Install the application dependencies
 RUN npm install

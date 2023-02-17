@@ -1,17 +1,9 @@
 //works as server
-var express = require('parse/node');
+var express = require('express');
 var app = express();
 var port = process.env.PORT;
-const APP_ID = "Xm9bC5ikwQiCdekPSzUuUHghmKAT9nbULtlsXVPA"
-const JAVASCRIPT_KEY = "5xME9Wk7FYEOnX6tDYFYfeo2z2s1DKnc3bEC0FKd"
-
-console.log("Initializing Application", APP_ID);
-
-express.initialize(APP_ID, JAVASCRIPT_KEY);
-express.serverURL("https://parseapi.back4app.com/");
-
-var server = app.listen(port || 4040, function() {
-    console.log('listening to website https://parseapi.back4app.com/');
+var server = app.listen(5001, function() {
+    console.log('listening to website https://bingo-rohan.herokuapp.com/');
 });
 var io = require('socket.io')(server);
 
@@ -32,6 +24,7 @@ io.on('connection', function(socket) {
      */
     socket.on('createGame', function(data) {
         rooms += 1;
+        console.log("creating the new game...")
         socket.join('room-' + rooms); //joining the first user to the socket
         io.sockets.emit('newGame', { name: data.name, room: 'room-' + rooms });
     });
