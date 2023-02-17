@@ -10,7 +10,7 @@ console.log("Initializing Application", APP_ID);
 express.initialize(APP_ID, JAVASCRIPT_KEY);
 express.serverURL("https://parseapi.back4app.com/");
 
-var server = app.listen(port || 5001, function() {
+var server = app.listen(port || 4040, function() {
     console.log('listening to website https://parseapi.back4app.com/');
 });
 var io = require('socket.io')(server);
