@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT;
 var server = app.listen(port || 5001, function() {
-    console.log('listening to website https://parseapi.back4app.com');
+    console.log('port 5001');
 });
 var io = require('socket.io')(server);
 
