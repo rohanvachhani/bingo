@@ -1,4 +1,4 @@
-# bingo
+# Bingo - The game
 
 Notes: 
 
