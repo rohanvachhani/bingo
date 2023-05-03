@@ -2,8 +2,8 @@
 var express = require('express');
 var app = express();
 var port = process.env.PORT;
-var server = app.listen(port || 5001, function() {
-    console.log('port 5001');
+var server = app.listen(port || 3000, function() {
+    console.log('port 3000');
 });
 var io = require('socket.io')(server);
 

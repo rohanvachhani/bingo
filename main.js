@@ -166,7 +166,8 @@ $(document).ready(function() {
     var name = "";
     // var socket = io.connect('https://bingo-rohan.herokuapp.com');
     // var socket = io.connect('http://localhost:5001');
-    var socket = io.connect('bingo-rohanvachhani.vercel.app')
+    // var socket = io.connect('http://localhost:3000')
+    var socket = io.connect('https://bingo-rohan.adaptable.app')
 
     //emit the create requset to the server when user click on create room button    
     $('#create').on('click', function() {
