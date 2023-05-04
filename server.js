@@ -34,6 +34,7 @@ io.on('connection', function(socket) {
      */
     socket.on('joinGame', function(data) { //rceive all the events from client
         var room = io.nsps['/'].adapter.rooms[data.room];
+        // var room = io.sockets.adapter.rooms.get(data.room);
         if (room && room.length == 1) {
             socket.join(data.room);
             roomID = data.room;
@@ -60,6 +61,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on('move_played', function(data) {
+        console.log("server:message received for move is: ", data.move, " from player ", data.player_name);
         socket.broadcast.to(roomID).emit('msg_rcvd', {
             player: data.player_name,
             move: data.move

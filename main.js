@@ -166,7 +166,7 @@ $(document).ready(function() {
     var name = "";
     // var socket = io.connect('https://bingo-rohan.herokuapp.com');
     // var socket = io.connect('http://localhost:5001');
-    // var socket = io.connect('http://localhost:3000')
+    // var socket = io.connect('http://localhost:3000/')
     var socket = io.connect('https://bingo-rohan.adaptable.app')
 
     //emit the create requset to the server when user click on create room button    
@@ -332,21 +332,20 @@ $(document).ready(function() {
 
 
     socket.on('msg_rcvd', function(data) {
-        console.log('data received: ' + data.move);
+        console.log('main: data received: ' + data.move);
         for (var i = 0; i < 25; i++) {
 
             if (ary[i] == data.move.trim()) {
-                console.log('in if');
                 $('#gameBoard tr').each(function(index_tr) { // 0 to 4 rows
                     $(this).find('td').each(function(index_td) {
-                        console.log('current td:' + $(this).html().trim() + " current move:" + data.move);
+                        console.log('main: current td:' + $(this).html().trim() + " current move:" + data.move);
                         if ($(this).html().trim() == data.move.trim()) {
                             mark_move(data.move.trim());
                             //change the color of cuurent move element
                             $(this).css('color', 'black');
                             if (check_win()) {
                                 var msg_to_send = ":: " + player.getPlayerName() + " is WINNER.!";
-                                console.log(msg_to_send);
+                                console.log("main: ", msg_to_send);
                                 socket.emit('gameEnd', { msg: msg_to_send });
 
                                 //turn.innerHTML = msg;
